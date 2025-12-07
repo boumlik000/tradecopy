@@ -77,7 +77,7 @@ export default function SampherosisPage() {
         setCopiedId(null)
         setShowToast(false)
       }, 1500)
-    } catch () {
+    } catch (_err) {
       console.error("Failed to copy text")
     }
   }
