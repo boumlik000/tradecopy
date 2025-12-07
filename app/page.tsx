@@ -63,6 +63,7 @@ export default function SampherosisPage() {
   const [date, setDate] = useState<Date | undefined>(new Date())
   const [percentage, setPercentage] = useState<string>("0")
   const [cards, setCards] = useState(initialCards)
+  const [dayNumber, setDayNumber] = useState<string>("240")
   const [copiedId, setCopiedId] = useState<number | null>(null)
   const [showToast, setShowToast] = useState(false)
   const [calendarOpen, setCalendarOpen] = useState(false)
@@ -111,6 +112,17 @@ export default function SampherosisPage() {
     }
   }
 
+  const handleApplyDayNumber = () => {
+    setCards((prev) =>
+      prev.map((card, index) => {
+        if (index === 0) {
+          return { ...card, title: `DAY ${dayNumber}` }
+        }
+        return card
+      }),
+    )
+  }
+
   return (
     <div className="min-h-screen  relative overflow-hidden">
       {/* Texture overlay */}
@@ -129,25 +141,45 @@ export default function SampherosisPage() {
           <img src="./Group2.svg" alt="logo" style={{height:60}}/>
         </div>
 
+
         <div className="bg-white rounded-2xl sm:rounded-full px-4 py-4 sm:px-6 shadow-sm flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-6 sm:mb-8">
           {/* Percentage Input */}
-          <div className="flex items-center gap-2 justify-between sm:justify-start">
-            <span className="text-sm font-medium text-[#1a1a1a] whitespace-nowrap">Enter %:</span>
-            <div className="flex items-center gap-2">
-              <Input
-                type="number"
-                value={percentage}
-                onChange={(e) => setPercentage(e.target.value)}
-                className="w-16 sm:w-20 border-0 bg-[#f5f5f5] rounded-lg text-center font-semibold text-[#1a1a1a]"
-              />
-              <Button
-                onClick={handleApplyPercentage}
-                className="bg-[#1a1a1a] hover:bg-[#333] text-white font-semibold rounded-lg px-3 sm:px-4 text-sm"
-              >
-                Set %
-              </Button>
-            </div>
+        <div className="flex items-center gap-2 justify-between sm:justify-start">
+          <span className="text-sm font-medium text-[#1a1a1a] whitespace-nowrap">Day:</span>
+          <div className="flex items-center gap-2">
+            <Input
+              type="number"
+              value={dayNumber}
+              onChange={(e) => setDayNumber(e.target.value)}
+              className="w-16 sm:w-20 border-0 bg-[#f5f5f5] rounded-lg text-center font-semibold text-[#1a1a1a]"
+            />
+            <Button
+              onClick={handleApplyDayNumber}
+              className="bg-[#1a1a1a] hover:bg-[#333] text-white font-semibold rounded-lg px-3 sm:px-4 text-sm"
+            >
+              Set Day
+            </Button>
           </div>
+        </div>
+
+
+        <div className="flex items-center gap-2 justify-between sm:justify-start">
+          <span className="text-sm font-medium text-[#1a1a1a] whitespace-nowrap">Enter %:</span>
+          <div className="flex items-center gap-2">
+            <Input
+              type="number"
+              value={percentage}
+              onChange={(e) => setPercentage(e.target.value)}
+              className="w-16 sm:w-20 border-0 bg-[#f5f5f5] rounded-lg text-center font-semibold text-[#1a1a1a]"
+            />
+            <Button
+              onClick={handleApplyPercentage}
+              className="bg-[#1a1a1a] hover:bg-[#333] text-white font-semibold rounded-lg px-3 sm:px-4 text-sm"
+            >
+              Set %
+            </Button>
+          </div>
+        </div>
 
           <div className="w-full h-px sm:w-px sm:h-8 bg-[#ddd]" />
 
