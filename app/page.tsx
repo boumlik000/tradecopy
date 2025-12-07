@@ -141,7 +141,16 @@ export default function SampherosisPage() {
           backgroundSize: "100% 100%",
         }}
       />
-
+      {/* Mobile background image */}
+      <div
+        className="absolute inset-0 pointer-events-none block sm:hidden bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url("/bgphone.png")`,
+          backgroundSize:"100% 100%",
+          backgroundPosition:"center",
+          /* Replace "/mobile-bg.png" with your image URL or path */
+        }}
+      />
       <div className="relative z-10 p-4 sm:p-6 lg:p-8 max-w-6xl mx-auto">
         {/* Logo - Smaller on mobile */}
         <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-10">
@@ -289,7 +298,7 @@ export default function SampherosisPage() {
           <span className="text-xs sm:text-sm font-semibold whitespace-nowrap">Text copied successfully</span>
         </div>
 
-        <div className="mt-40 flex justify-center">
+        <div className="mt-10 md:mt-40 flex justify-center">
           <img src="./span.svg" alt="logo" style={{height:20}}/>
         </div>
       </div>
