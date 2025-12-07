@@ -72,7 +72,14 @@ export default function SampherosisPage() {
     try {
       const formattedTitle = title.replace(/\s+/g, "-")
       const formattedSubtitle = subtitle ? subtitle.replace(/\s+/g, "-") : ""
-      const fullText = formattedSubtitle ? `${formattedTitle}-${formattedSubtitle}` : formattedTitle
+
+      let fullText: string
+      if (id === 1 && formattedSubtitle) {
+        fullText = `${formattedTitle}\n${formattedSubtitle}`
+      } else {
+        fullText = formattedSubtitle ? `${formattedTitle}-${formattedSubtitle}` : formattedTitle
+      }
+
       await navigator.clipboard.writeText(fullText)
       setCopiedId(id)
       setShowToast(true)
