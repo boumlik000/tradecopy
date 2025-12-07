@@ -69,7 +69,9 @@ export default function SampherosisPage() {
 
   const handleCopyCard = async (id: number, title: string, subtitle: string) => {
     try {
-      const fullText = subtitle ? `${title}\n${subtitle}` : title
+      const formattedTitle = title.replace(/\s+/g, "-")
+      const formattedSubtitle = subtitle ? subtitle.replace(/\s+/g, "-") : ""
+      const fullText = formattedSubtitle ? `${formattedTitle}\n${formattedSubtitle}` : formattedTitle
       await navigator.clipboard.writeText(fullText)
       setCopiedId(id)
       setShowToast(true)
@@ -77,7 +79,7 @@ export default function SampherosisPage() {
         setCopiedId(null)
         setShowToast(false)
       }, 1500)
-    } catch (_err) {
+    } catch (err) {
       console.error("Failed to copy text")
     }
   }
